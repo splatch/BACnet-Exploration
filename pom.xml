@@ -104,10 +104,33 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.3.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>dockerBuild</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <to>
+                        <image>saransh14/bacnet-exploration:latest</image>
+                    </to>
+                    <container>
+                        <environment>
+                        </environment>
+                        <ports>
+                            <port>8080</port>
+                            <port>47808/udp</port>
+                        </ports>
+                    </container>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
